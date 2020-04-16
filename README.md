@@ -1,5 +1,5 @@
 ---
-description: "Aggregate Concatenation of Anti-Sec Notes ad nauseam \U0001F3F4                                                                            by Jann Moon \U0001F318"
+description: "Aggregate Concatenation of Anti-Sec Notes ad nauseam \U0001F3F4                                                                             by Jann Moon \U0001F318"
 ---
 
 # 💣 Infosec Corruption
