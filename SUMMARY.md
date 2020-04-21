@@ -6,6 +6,8 @@
 
 * [IDORs / Auth. Bugs](bug-bounty-web-hacking/untitled.md)
 * [HTTP Methods Vulns.](bug-bounty-web-hacking/http-methods-vulns..md)
+* [SSRF](bug-bounty-web-hacking/ssrf.md)
+* [Application & Business Logic](bug-bounty-web-hacking/application-and-business-logic.md)
 
 ## Burp Suite
 
