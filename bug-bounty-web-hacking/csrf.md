@@ -28,7 +28,14 @@ Or perhaps you can figure out the CSRF token if the implementation sucks.
 * HTML Injection with something like &lt;form action="url.com/acquire\_token.php"&gt;&lt;/textarea&gt;
 * Check to see if part of a token is static and cut off the the dynamic part, I've seen bug bounty write-ups where the web app only checked the first part of the token.
 
-\*\*\*\*
+**Common Critical Functions for CSRF  
+  
++** Add/Upload files  
++ Password change  
++ E-mail change  
++ Transfer money  
++ Delete file  
++ Profile edits
 
 **Via GET request**  
 requiring user interaction:  
