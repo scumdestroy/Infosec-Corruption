@@ -6,6 +6,7 @@
 
 * [IDORs / Auth. Bugs](bug-bounty-web-hacking/untitled.md)
 * [Command Injection](bug-bounty-web-hacking/command-injection.md)
+* [CSRF](bug-bounty-web-hacking/csrf.md)
 * [HTTP Methods Vulns.](bug-bounty-web-hacking/http-methods-vulns..md)
 * [SSRF](bug-bounty-web-hacking/ssrf.md)
 * [Application & Business Logic](bug-bounty-web-hacking/application-and-business-logic.md)
