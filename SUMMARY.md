@@ -29,3 +29,10 @@
 * [JSON testing in APIs](api-attacks/json-testing-in-apis.md)
 * [31 days of API security tricks](api-attacks/31-days-of-api-security-tricks.md)
 
+## Tools
+
+* [Nmap](tools/nmap.md)
+* [Web-scanners](tools/web-scanners.md)
+* [Recon-ng](tools/recon-ng.md)
+* [Wfuzz](tools/wfuzz.md)
+
