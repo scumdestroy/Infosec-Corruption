@@ -10,6 +10,7 @@
 * [HTTP Methods Vulns.](bug-bounty-web-hacking/http-methods-vulns..md)
 * [SSRF](bug-bounty-web-hacking/ssrf.md)
 * [Application & Business Logic](bug-bounty-web-hacking/application-and-business-logic.md)
+* [Other attacks](bug-bounty-web-hacking/other-attacks.md)
 
 ## Burp Suite
 
