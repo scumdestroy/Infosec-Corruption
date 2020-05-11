@@ -6,11 +6,11 @@
 
 * [Application & Business Logic](bug-bounty-web-hacking/application-and-business-logic.md)
 * [Command Injection](bug-bounty-web-hacking/command-injection.md)
+* [CRLF](bug-bounty-web-hacking/other-attacks.md)
 * [CSRF](bug-bounty-web-hacking/csrf.md)
 * [HTTP Methods Vulns.](bug-bounty-web-hacking/http-methods-vulns..md)
 * [IDORs / Auth. Bugs](bug-bounty-web-hacking/untitled.md)
 * [SSRF](bug-bounty-web-hacking/ssrf.md)
-* [CRLF](bug-bounty-web-hacking/other-attacks.md)
 
 ## Burp Suite
 
