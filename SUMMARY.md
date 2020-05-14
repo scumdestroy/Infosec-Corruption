@@ -11,6 +11,8 @@
 * [HTTP Methods Vulns.](bug-bounty-web-hacking/http-methods-vulns..md)
 * [IDORs / Auth. Bugs](bug-bounty-web-hacking/untitled.md)
 * [SSRF](bug-bounty-web-hacking/ssrf.md)
+* [SSTI](bug-bounty-web-hacking/ssti.md)
+* [PHP : grep Payloads](bug-bounty-web-hacking/php-grep-payloads.md)
 
 ## Burp Suite
 

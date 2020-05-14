@@ -12,5 +12,28 @@
 
 or you can manually send requests via netcat, telnet, postman, burp's repeater or any client that can access SOAP/REST.
 
+**HTTP HEADERS**
 
+`X-Forwarded-Host   
+X-Forwarded-Port   
+X-Forwarded-Scheme   
+Origin: null   
+Origin: [siteDomain].attacker.com   
+X-Frame-Options: Allow   
+X-Forwarded-For: 127.0.0.1   
+X-Client-IP: 127.0.0.1   
+Client-IP: 127.0.0.1`   
+  
+**---For injecting BXSS\(blind XSS\) \|\| SQLI payloads---**   
+  
+`Referer   
+X-Wap-Profile   
+X-Original-Url   
+Forwarded   
+X-Originated-IP   
+X-Client-IP   
+From User Agent`
+
+**---Possible File upload vulnerabilities---**   
+X-HTTP-Method-Override: PUT
 
