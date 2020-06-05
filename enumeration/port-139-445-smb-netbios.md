@@ -82,6 +82,17 @@ use auxiliary/scanner/smb/smb_ms17_010
 msfconsole -r /usr/share/metasploit-framwork/scripts/resource/smb_checks.rc 
 ```
 
+**Other SMB enumerating and incinerating tools that I like:**   
+[_**https://github.com/m8r0wn/nullinux**_](https://github.com/m8r0wn/nullinux)  
+_****_[_**https://github.com/Raikia/SMBCrunch**_](https://github.com/Raikia/SMBCrunch)  
+_****_[_**https://github.com/T-S-A/smbspider**_](https://github.com/T-S-A/smbspider)  
+_****_[_**https://github.com/0v3rride/Enum4LinuxPy**_](https://github.com/0v3rride/Enum4LinuxPy)  
+_****_[_**https://github.com/shirosaidev/sharesniffer**_](https://github.com/shirosaidev/sharesniffer)  
+_****_[_**https://github.com/dirkjanm/krbrelayx**_](https://github.com/dirkjanm/krbrelayx)  
+****
+
+\*\*\*\*
+
 **\(Oftentimes, port 111, RPC, will be open along with this service\)**
 
 ```text
