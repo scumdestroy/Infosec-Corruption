@@ -10,6 +10,7 @@
 * [CSRF](bug-bounty-web-hacking/csrf.md)
 * [HTTP Methods Vulns.](bug-bounty-web-hacking/http-methods-vulns..md)
 * [IDORs / Auth. Bugs](bug-bounty-web-hacking/untitled.md)
+* [LFI](bug-bounty-web-hacking/lfi.md)
 * [SSRF](bug-bounty-web-hacking/ssrf.md)
 * [SSTI](bug-bounty-web-hacking/ssti.md)
 * [PHP : grep Payloads](bug-bounty-web-hacking/php-grep-payloads.md)
@@ -23,14 +24,14 @@
 * [Other extensions](burp-suite/other-extensions.md)
 * [Turbo Intruder](burp-suite/turbo-intruder.md)
 
-## API attacks
+## API Penetration Testing
 
-* [API attacks](api-attacks/api-attacks.md)
-* [API/SOAP/WSDL Tricks](api-attacks/api-soap-wsdl-tricks.md)
-* [Checklist](api-attacks/checklist.md)
-* [Common endpoints](api-attacks/common-endpoints.md)
-* [JSON testing in APIs](api-attacks/json-testing-in-apis.md)
-* [31 days of API security tricks](api-attacks/31-days-of-api-security-tricks.md)
+* [API attacks](api-penetration-testing/api-attacks.md)
+* [API/SOAP/WSDL Tricks](api-penetration-testing/api-soap-wsdl-tricks.md)
+* [Checklist](api-penetration-testing/checklist.md)
+* [Common endpoints](api-penetration-testing/common-endpoints.md)
+* [JSON testing in APIs](api-penetration-testing/json-testing-in-apis.md)
+* [31 days of API security tricks](api-penetration-testing/31-days-of-api-security-tricks.md)
 
 ## Tools
 
@@ -38,4 +39,15 @@
 * [Web-scanners](tools/web-scanners.md)
 * [Recon-ng](tools/recon-ng.md)
 * [Wfuzz](tools/wfuzz.md)
+
+## WAF Bypasses
+
+* [General WAF torment](waf-bypasses/general-waf-torment.md)
+* [Cloudflare](waf-bypasses/cloudflare.md)
+* [Testing Methodology/Evasion techniques](waf-bypasses/testing-methodology-evasion-techniques.md)
+* [Tools and Resources](waf-bypasses/tools-and-resources.md)
+
+## Enumeration
+
+* [Port 139, 445 : SMB/NetBIOS](enumeration/port-139-445-smb-netbios.md)
 
