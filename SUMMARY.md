@@ -13,7 +13,7 @@
 * [LFI](bug-bounty-web-hacking/lfi.md)
 * [SSRF](bug-bounty-web-hacking/ssrf.md)
 * [SSTI](bug-bounty-web-hacking/ssti.md)
-* [PHP : grep Payloads](bug-bounty-web-hacking/php-grep-payloads.md)
+* [Code Analysis : PHP & grep](bug-bounty-web-hacking/php-grep-payloads.md)
 
 ## Burp Suite
 

@@ -4,14 +4,17 @@ description: Finding authorization issues with autorize
 
 # Autorize
 
-1. Login to the target application as a low privileged user, go to authorize tab in burp - autorize should be off 
-2. Click Configuration 
-3. Click Fetch cookies from last request 
-4. Open incognito window 
-5. Login as high privileged user 
-6. Click Autorize is off to turn it on 
-7. Go to areas of site that are admin only 
-8. Look for orange/green in the columns
+### Basic workflow
+
+1. Login to the target application as a low or non-privileged user
+2. Visit the  Autorize tab in burp, keep it off during configuration 
+3. Click Configuration 
+4. Click Fetch cookies from last request 
+5. Open an incognito window in your browser
+6. Login as a higher privileged user 
+7. Click "Autorize is off" button to turn it on 
+8. Visit various areas of the site, but focus on sensitive areas that require privileged accounts to access or actions a lower privileged user should not be able to accomplish
+9. Frown at the results until you find something interesting.
 
 
 

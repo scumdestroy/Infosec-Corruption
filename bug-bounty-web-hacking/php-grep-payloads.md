@@ -2,7 +2,7 @@
 description: 'If the source code gets leaky, dig through the spaghetti a little.'
 ---
 
-# PHP : grep Payloads
+# Code Analysis : PHP & grep
 
 PHP Vulnerabilities could fill a library and will likely continue to fill evermore through the years of this language's livelihood on the web.  If you do get a chance to see the source code of a web app; be it open-source on github, a white-box test or just a poorly implemented leaky framework, here are some golden nuggets to grep for.
 
