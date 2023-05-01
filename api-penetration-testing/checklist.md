@@ -26,55 +26,51 @@
 
 -httpclient  api automation
 
+-Burp Suite/ZAP, of course.
+
 **AUTHENTICATION**
 
-* Check for basic auth
-* Test max retry and jail features in login
-* Sensitive data not encrypted?
+* Check for basic auth and fuzz "admin:admin", "test:test", "guest:<organization name>" or default creds after fingerprinting your target.  You can set up intruder to take a list of usernames, a list of passwords, insert a `:` in between, encode them with base64 and plug them into the `Authorization: Basic $FUZZ$` header
+* Test rate limiting and lockout features in login
+* Sensitive data not encrypted or using unsufficient crypto (i.e. MD5 or base64 + MD5, check out code chef or the Decode tool)
 
-**JWT**
+### **JWT**
 
 * Test brute-forcing w/ jwt\_tool
-* Test if algorhythm can be changed \(jwt.io\)
+* Test if algorhythm can be changed \(jwt.io or Burp\)
 * Test token expiration \(TTL, RTTL\)
-* Jwt.io to test if sensitive data in token
+* Jwt.io to easily decrypt and test if sensitive data in token
 * Injection possible in 'kid' element
 * Check for time constant verification for HMAC
 * Check that keys and secrerts are different between ENV
 
-**Oauth**
+### **Oauth**
 
 * Test redirect\_uri for open redirect
-* Test existence of response tpye token
+* Test existence of response type token
 * Test CSR
+* Honestly, I need to brush up on here, there's lots of research out there to learn
 
-**Access**
+Test lack of HSTS header
 
-\*test brute force
+### **INPUT**
 
-Ind http requests
-
-Test lack o HSTS header
-
-**INPUT**
-
-* Test http methods \(get, put, delete, patch, post\)
+* Test http methods \(GET, POST, PUT, PHATFARM, DELETE\)
 * Test different content types
 * Test for common vulns \(XXS&lt; SQLI, RCE, XXE, etc\)
-* Test or url sensitive data \(password, tkens, api keys\)
+* Test for sensitive data in URLs, JS files, etc... \(password, tokens, api keys\)
 
-**Processing**
+### **Processing**
 
 * check if all endpoints are protected behind auth
 * Check if resource iD is used in the urlk
 * Test for debug use
 
-**Output**
+### **Output**
 
-* Check for X-content-type options nosniff
-* X-frame options : deny
+* `X-Frame-Options: Deny`
 * Content security policy default src none
-* Check for fingerprinting headers \(x-owered by, server, x-aspnet version\)
-* Check for content type forcing
-* Check for return sensitive data
+* Check for fingerprinting headers \(X-Powered-By, Server, X-ASPnet-Version\)
+* Check for content-type forcing
+* Check for sensitive data in response
 
