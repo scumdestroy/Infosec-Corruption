@@ -1,23 +1,22 @@
 # API/SOAP/WSDL Tricks
 
+* Classic SQL injection test / payload stuffing assault (i.e. `' or '1'='1 --`)
+    - Trying to use a POST or JSON or even SOAP/XML request? You can copy-paste it from Burp into file, tag your intended injection point with a `*` and slap it into sqlmap or ghauri with the `-r muh_req.req` flag.
+* Pop in some wildcards: `*` and `%`
+* Throw in some empty strings or `'`, `"`, `=` or  `'`
 
+Mess around with parameters like:
+`_Login` then `login` then `login` then `login_`
 
-* sql injection test
-* wildcards : \* and %
-* ' or 1=1--
-* empty strings or ' or "='
+* Try using a valid session or UUID, then mix it up with (other people's) correct, expired and faulty session IDs.  Note changes in server response time, minimal differences in response size or content and investigate deeper.
 
-_Login then login then login then login_
-
-* try normal, then mix up correct, expired and faulty session IDs
-
-Login, get sessionID
-
-* logout
-* make request while logged out w/ sssionID
-* request with expired ID
-* request with faulty sessionID
-* how about two IDs log in simultaneously and send requests
+Quick login testing methodology run:
+- Login, get sessionID
+- logout
+- make request while logged out w/ sssionID
+- request with expired ID
+- request with faulty sessionID
+- how about two IDs log in simultaneously and send requests (parameter pollution?  race condition? almost anything you can do to a normal web app)
 
 send
 
