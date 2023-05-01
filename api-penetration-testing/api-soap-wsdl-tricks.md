@@ -18,8 +18,8 @@ Quick login testing methodology run:
 - request with faulty sessionID
 - how about two IDs log in simultaneously and send requests (parameter pollution?  race condition? almost anything you can do to a normal web app)
 
-send
-
+More tests to try, just to show mindset:
+Try sending...
 * Username and password
 * just password
 * just username
@@ -33,20 +33,18 @@ send
 * mypassword &lt;/password&gt;
 * make payloads gigantic
 
-**xpath injection:**
+### **xpath injection:**
 
 &lt;login&gt;  
   string\(//user\[username/text\(\)='' or '1' = '1' and password/text\(\)='' or '1' = '1'\]\)  
 &lt;/login&gt;
 
 
+### **JSON data desecration**
 
-Looking for BOLA \(IDOR\) in APIs? got 401/403 errors?
-
-AuthZ bypass tricks:
+Some things you can use to get BOLAs/IDORs, bypass auth or another mysterious outcome in your favor!
 
 * Wrap ID with an array {“id”:111} --&gt; {“id”:\[111\]}
 * JSON wrap {“id”:111} --&gt; {“id”:{“id”:111}}
-*  Send ID twice URL?id=&lt;LEGIT&gt;&id=&lt;VICTIM&gt;
-*  Send wildcard {"user\_id":"\*"} 
+* Send wildcard {"user\_id":"\*"} 
 
